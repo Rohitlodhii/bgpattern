@@ -5,12 +5,13 @@ import ThumbnailPreviewerCard from "./ui/ThumbnailPreviewerCard";
 import { LinearPatterns } from "@/patterns/linear";
 import { useColorStore } from "@/lib/zustandState";
 import { useRecentKeysStore, selectSortedKeys } from "@/lib/recentKeysStore";
-import { Search, Settings } from "lucide-react";
+import { Search, Settings, Sidebar } from "lucide-react";
 import SetupDialog from "./dialogs/SetupDialog";
 import SettingsDialogContent from "./dialogs/settingsDialog";
+import SidebarCollapseBtn from "./ui/Sidebarcollapsebtn";
 
 const LeftSidebar = () => {
-  const { isOpen } = useSidebarStore();
+  const { isOpen ,toggleSidebar } = useSidebarStore();
   const { fill, fillOpacity, background } = useColorStore();
   const keyToTimestamp = useRecentKeysStore((s) => s.keyToTimestamp);
   const recentKeys = useMemo(() => selectSortedKeys({ keyToTimestamp, upsertKey: () => {}, removeKey: () => {}, clearAll: () => {} } as any), [keyToTimestamp]);
@@ -19,17 +20,22 @@ const LeftSidebar = () => {
     () => LinearPatterns.filter((pattern) => recentKeySet.has(String(pattern.key))),
     [recentKeySet]
   );
+  
 
   return (
     <motion.div
-      className="h-full bg-sidebar border border-border hidden md:hidden lg:flex rounded-xl"
+      className={`h-full bg-sidebar ${isOpen ? "border z-10" : "border-none z-0"}  lg:max-w-xs  border-border absolute  lg:top-0 lg:left-0 lg:relative lg:flex rounded-xl`}
       animate={{
-        width: isOpen ? "20%" : "0%",
+        width: isOpen ? "100%" : "0%",
+        
+        
       }}
       transition={{
         duration: 0.3,
         ease: "easeInOut",
       }}
+    
+      
     >
       <motion.div
         className="flex flex-col p-1 gap-1 w-full h-full"
@@ -41,9 +47,16 @@ const LeftSidebar = () => {
           ease: "easeInOut",
         }}
       >
-        <div className="h-12 w-full rounded-xl border border-border bg-sidebar flex gap-2 items-center p-1 ">
-          <div className="h-full aspect-square bg-orange-400 rounded-lg "></div>
-          <div className="text-lg font-black">.bg-pattern</div>
+        <div className="h-12 w-full rounded-xl border border-border bg-sidebar flex justify-between p-1 ">
+          <div className="flex gap-2 items-center  ">
+            <div className="h-full aspect-square bg-orange-400 rounded-lg "></div>
+            <div className="text-lg font-black">.bg-pattern</div>
+          </div>
+          <div className="flex lg:hidden pr-3 ">
+          <button onClick={()=>toggleSidebar()} className='flex cursor-pointer items-center h-full w-full justify-center'>
+            <Sidebar className='size-4'/>
+        </button>
+          </div>
         </div>
         <div className="  flex  flex-col gap-2 py-1 rounded-xl">
           <div className="w-full h-fit flex gap-1 rounded-xl p-1 ">

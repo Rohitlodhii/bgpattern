@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const SVGPreview  = () => {
 
-    let currentPatternShownKey = 1;
+    let currentPatternShownKey = 6;
     
     // Get pattern data from Zustand store
     const {
@@ -16,6 +16,7 @@ const SVGPreview  = () => {
         fill,
         fillOpacity,
         background,
+        bgOpacity,
         path,
         loadPatternByKey
     } = usePatternStore();
@@ -29,9 +30,11 @@ const SVGPreview  = () => {
     <div className="aspect-video bg-neutral-500 w-[80%] rounded-xl overflow-hidden">
     <svg
       className="w-full h-full"
-      style={{ backgroundColor: background }}
+      
+      style={{ backgroundColor: background , opacity : bgOpacity}}
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid slice"
+      
     >
       <defs>
         <pattern

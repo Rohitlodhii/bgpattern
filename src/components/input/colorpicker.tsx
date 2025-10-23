@@ -17,7 +17,7 @@ const ColorPicker = ({ color , setColor } : colorTypes ) => {
     }, [color])
    
   return (
-    <div className='border border-border w-44 h-10 p-1 rounded-lg flex items-center overflow-hidden '>
+    <div className='border border-foreground/10 w-full h-10 p-1 rounded-lg bg-input flex items-center overflow-hidden '>
         <Popover>
             <PopoverTrigger>
                 <div className='h-8 aspect-square rounded-md border border-border cursor-pointer ' style={{ background : color }}>

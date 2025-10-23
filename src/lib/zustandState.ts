@@ -21,7 +21,6 @@ export const useColorStore = create<ColorState>((set) => ({
 }));
 
 
-// Pattern state interface based on LinearPatterns structure
 interface PatternState {
   // Pattern identification
   key: number;
@@ -35,6 +34,7 @@ interface PatternState {
   fill: string;
   fillOpacity: number;
   background: string;
+  bgOpacity : number;
   path: string;
   
   // Actions
@@ -45,6 +45,7 @@ interface PatternState {
   setFill: (fill: string) => void;
   setFillOpacity: (opacity: number) => void;
   setBackground: (background: string) => void;
+  setBgOpacity : ( bgOpacity : number) => void;
   setPath: (path: string) => void;
   loadPatternByKey: (key: number, patterns: any[]) => void;
 }
@@ -61,6 +62,7 @@ export const usePatternStore = create<PatternState>((set) => ({
   fill: useColorStore.getState().fill,
   fillOpacity: useColorStore.getState().fillOpacity,
   background: useColorStore.getState().background,
+  bgOpacity : 1.0,
   path: "M0 40L40 0H20L0 20M40 40V20L20 40",
   
   // Actions
@@ -74,6 +76,7 @@ export const usePatternStore = create<PatternState>((set) => ({
     fill: pattern.default.fill,
     fillOpacity: pattern.default.fillOpacity,
     background: pattern.default.background,
+    bgOpacity:pattern.default.bgOpacity,
     path: pattern.path,
   }),
   
@@ -83,6 +86,7 @@ export const usePatternStore = create<PatternState>((set) => ({
   setFill: (fill) => set({ fill }),
   setFillOpacity: (fillOpacity) => set({ fillOpacity }),
   setBackground: (background) => set({ background }),
+  setBgOpacity : (bgOpacity)=>set({ bgOpacity}),
   setPath: (path) => set({ path }),
   
   loadPatternByKey: (key, patterns) => {
