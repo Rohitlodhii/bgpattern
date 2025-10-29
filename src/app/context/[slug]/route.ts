@@ -1,26 +1,23 @@
-// app/context/[slug]/route.ts
-import { llmText } from "@/patterns/llmdata";
-import { NextResponse } from "next/server";
-
+import { NextResponse } from "next/server"
+import { llmText } from "@/patterns/llmdata"
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } }
+  context: { params: Promise<{ slug: string }> }
 ) {
-  const { slug } = params;
+  // Await params because Next.js types it as a Promise
+  const { slug } = await context.params
 
-  // Find matching component data
-  const componentData = llmText[slug as keyof typeof llmText];
+  const componentData = llmText[slug as keyof typeof llmText]
 
   if (!componentData) {
     return NextResponse.json(
       { error: `Component "${slug}" not found` },
       { status: 404 }
-    );
+    )
   }
 
-  // Return as plain text (stringified JSON)
   return new NextResponse(JSON.stringify(componentData, null, 2), {
     headers: { "Content-Type": "text/plain; charset=utf-8" },
-  });
+  })
 }
