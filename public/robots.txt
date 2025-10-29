@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Context: https://bgpattern.vercel.app/context
