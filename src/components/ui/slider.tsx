@@ -3,17 +3,20 @@
 import * as React from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { cn } from "@/lib/utils";
+import { LucideIcon } from "lucide-react";
 
 const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> & {
-    label: string;
+    label?: string;
     valueSubtext?: number | string;
+    Icon? : LucideIcon
   }
->(({ className, label, valueSubtext, value, ...props }, ref) => (
+>(({ className, label,Icon, valueSubtext, value, ...props }, ref) => (
   <div className="relative overflow-hidden">
-    <label className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground text-sm font-medium ">
-      {label}
+    <label className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground/50 text-xs font-medium flex gap-1 items-center ">
+    {Icon && <Icon className="text-muted-foreground h-4 w-4"/>}
+      {label && label}
     </label>
     <SliderPrimitive.Root
       ref={ref}
@@ -24,12 +27,12 @@ const Slider = React.forwardRef<
       )}
       {...props}
     >
-      <SliderPrimitive.Track className="relative h-10 w-full grow rounded-lg border border-foreground/10 bg-foreground/5 hover:border-primary/20 transition-all duration-300 ease-[cubic-bezier(0.45,0.05,0.55,0.95)]">
+      <SliderPrimitive.Track className="relative h-8 grow rounded-lg border border-foreground/10 bg-foreground/5 hover:border-primary/20 transition-all duration-300 ease-[cubic-bezier(0.45,0.05,0.55,0.95)]">
         <SliderPrimitive.Range className="absolute h-full hidden" />
       </SliderPrimitive.Track>
-      <SliderPrimitive.Thumb className="block h-8 w-2 rounded-full bg-foreground/20 shadow transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-grab active:cursor-grabbing hover:bg-foreground/30 transition-all duration-300 ease-[cubic-bezier(0.45,0.05,0.55,0.95)]" />
+      <SliderPrimitive.Thumb className="block h-6 z-10 w-2 rounded-full bg-secondary-foreground shadow transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-grab active:cursor-grabbing hover:bg-foreground/30 transition-all duration-300 ease-[cubic-bezier(0.45,0.05,0.55,0.95)]" />
     </SliderPrimitive.Root>
-    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/80 text-sm font-medium">
+    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/50 text-sm font-medium">
       {typeof valueSubtext === "number" ? valueSubtext.toFixed(2) : valueSubtext}
     </span>
   </div>

@@ -8,7 +8,7 @@ interface RawSVGPreviewProps {
 
 const RawSVGPreview: React.FC<RawSVGPreviewProps> = ({ svg }) => {
   return (
-    <div className="relative w-[80%] aspect-video rounded-xl overflow-hidden bg-neutral-300">
+    <div className="relative w-full h-full rounded-xl overflow-hidden bg-neutral-300">
       <div
         className="absolute inset-0 w-full h-full"
         style={{
