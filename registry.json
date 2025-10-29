@@ -1,0 +1,23 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "DotsPattern",
+    "homepage" :"https://bgpattern.vercel.app",
+    "items": [
+       { "name" : "dotspattern",
+        "type":"registry:ui",
+        "title": "Dots Pattern Bg",
+        "description" :"An animated dot pattern background",
+        "files": [
+            {
+                "path" : "src/registry/new-york/ui/dot-pattern.tsx",
+                "type": "registry:ui"
+            }
+        ],
+        "dependencies" : ["motion"]
+        }
+
+
+    ]
+
+
+}
