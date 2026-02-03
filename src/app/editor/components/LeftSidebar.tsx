@@ -24,7 +24,7 @@ const LeftSidebar = () => {
 
   return (
     <motion.div
-      className={`h-full bg-sidebar ${isOpen ? "border z-10" : "border-none z-0"}  lg:max-w-xs  border-border absolute  lg:top-0 lg:left-0 lg:relative lg:flex rounded-xl`}
+      className={`h-full bg-sidebar ${isOpen ? "border z-10" : "border-none z-0"}  lg:max-w-sm  border-border absolute  lg:top-0 lg:left-0 lg:relative lg:flex rounded-xl`}
       animate={{
         width: isOpen ? "100%" : "0%",
         
