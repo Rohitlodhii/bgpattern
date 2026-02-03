@@ -6,7 +6,7 @@ const Screensize = () => {
     const {screenType , setScreenType } = useScreenStore();
 
   return (
-    <div className='flex items-center justify-center h-10 w-36 bg-secondary shadow-sm absolute bottom-1 right-0 rounded-lg border border-border'>
+    <div className='flex items-center justify-center h-10 w-36 bg-secondary shadow-sm absolute bottom-4 right-4 rounded-lg border border-border z-10'>
         <select
         value={screenType}
         onChange={(e) => setScreenType(e.target.value as "lg" | "md" | "sm")}
